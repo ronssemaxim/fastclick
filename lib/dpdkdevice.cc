@@ -402,7 +402,7 @@ String DPDKDevice::MEMPOOL_PREFIX = "click_mempool_";
 unsigned DPDKDevice::DEF_RING_NDESC = 1024;
 unsigned DPDKDevice::DEF_BURST_SIZE = 32;
 
-unsigned DPDKDevice::RING_FLAGS = 0;
+unsigned DPDKDevice::RING_FLAGS = 1;
 unsigned DPDKDevice::RING_SIZE  = 64;
 unsigned DPDKDevice::RING_POOL_CACHE_SIZE = 32;
 unsigned DPDKDevice::RING_PRIV_DATA_SIZE  = 0;
