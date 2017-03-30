@@ -131,13 +131,10 @@ ToDPDKRing::initialize(ErrorHandler *errh)
     
 
     if ( !_send_ring )
-        return errh->error("[%s] Problem getting Tx ring. "
+        return errh->error("[%s] Problem getting Tx ring with name %s. "
                     "Make sure that the process attached to this element has the right ring configuration\n",
-                    name().c_str());
-    if ( !_message_pool )
-        return errh->error("[%s] Problem getting message pool. "
-                    "Make sure that the process attached to this element has the right ring configuration\n",
-                    name().c_str());
+                    name().c_str(),
+                    _PROC_2.c_str());
 
     // Initialize the internal queue
     _iqueue.pkts = new struct rte_mbuf *[_internal_tx_queue_size];
@@ -147,7 +144,6 @@ ToDPDKRing::initialize(ErrorHandler *errh)
         _iqueue.timeout.move_thread(click_current_cpu_id());
     }
 
-    /*
     click_chatter("[%s] Initialized with the following options: \n", name().c_str());
     click_chatter("|->  MEM_POOL: %s \n", _MEM_POOL.c_str());
     click_chatter("|-> FROM_PROC: %s \n", _origin.c_str());
@@ -158,7 +154,6 @@ ToDPDKRing::initialize(ErrorHandler *errh)
     click_chatter("|-> DEF BURST: %d \n", _def_burst_size);
     click_chatter("|->     NDESC: %d \n", _ndesc);
     click_chatter("|->   TIMEOUT: %d \n", _timeout);
-    */
 
     return 0;
 }
