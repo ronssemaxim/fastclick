@@ -80,8 +80,8 @@ FromDPDKRing::configure(Vector<String> &conf, ErrorHandler *errh)
         _numa_zone = 0;
     }
 
-    _PROC_1 = _origin+"_2_"+_destination;
-    _PROC_2 = _destination+"_2_"+_origin;
+    _PROC_1 = _origin;
+    _PROC_2 = _destination;
 
     return 0;
 }
