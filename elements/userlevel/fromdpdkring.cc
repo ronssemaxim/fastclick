@@ -119,17 +119,13 @@ FromDPDKRing::initialize(ErrorHandler *errh)
     }
 
     _message_pool = rte_mempool_lookup(_MEM_POOL.c_str());
-    if (!_message_pool) {
-        _message_pool = rte_mempool_create(
-            _MEM_POOL.c_str(), _ndesc,
-            DPDKDevice::MBUF_DATA_SIZE,
-            DPDKDevice::RING_POOL_CACHE_SIZE,
-            DPDKDevice::RING_PRIV_DATA_SIZE,
-            NULL, NULL, NULL, NULL,
-            rte_socket_id(), DPDKDevice::RING_FLAGS
-        );
-    }
 
+
+    if (!_message_pool) 
+        return errh->error("[%s] Problem looking up mempool with name %s\n",
+                    _MEM_POOL.c_str(),
+                    name().c_str());
+    
 
     if ( !_recv_ring )
         return errh->error("[%s] Problem getting Rx ring. "
